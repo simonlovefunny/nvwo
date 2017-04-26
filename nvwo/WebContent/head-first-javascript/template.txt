@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>iRock - The  Virtual Pet Rock </title>
+
+<script type="text/javascript">
+	
+	//点击事件，提示用户输入
+	function touchRock(){
+		//用户输入后获得输入值给username,输入框有提示信息‘ Enter your name here ’
+		var username=prompt("What's your name?", "Enter your name here");
+		
+		if(username){
+			//弹出欢迎信息，并且切换id=rockImg的图片
+			alert("It is happy to meet you,"+username+".");
+			document.getElementById("rockImg").src="images/rock_happy.png";
+					
+		}
+		
+	}
+
+</script>
+</head>
+<body onload="alert('Hello,I am  your pet rock');">
+		
+		<div style="margin-top:100px; text-align: center;">		
+			<img id="rockImg" src="images/rock.png"
+			onclick="touchRock()" alt="iRock"/>
+
+		</div>
+		
+		 
+	
+</body>
+</html>

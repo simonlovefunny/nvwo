@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<taglib xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd"
+    version="2.1">
+  <!-- tld文件描述 --> 
+  <description>MyTag 1.0 core library</description>
+  <display-name>MyTag core</display-name>
+  <tlib-version>1.0</tlib-version>
+  <!--  建议在JSP页面使用的标签前缀 prefix-->
+  <short-name>nvwo</short-name>
+  <!--  作为tld文件的id，用来唯一标识tld文件，JSP通过uri属性来引入tld库-->
+  <uri>http://www.simon.com/mytag/core</uri>
+  
+  		<!-- 描述自定义标签 -->
+  		<tag>
+  		<!-- 标签名 -->
+  		<name>hello</name>
+  		<!-- 标签的实现类 -->
+  		<tag-class>com.simon.nvwo.javaweb.tag.HelloSimpleTag</tag-class>
+  		<!-- 标签体-->
+  		<body-content>empty</body-content>
+  		
+  		<!-- 设置当前标签的属性 -->
+  		<attribute>
+  			<!-- 属性名 -->
+  			<name>value</name>
+  			<!-- 属性是否必须 -->
+  			<required>true</required>
+  			<!-- runtime expresssion value当前属性是否可以接受运行时表达式(EL${})的动态值 -->
+  			<rtexprvalue>true</rtexprvalue>
+  		</attribute>
+  		
+  		<!-- 设置当前标签的属性 -->
+  		<attribute>
+  			<!-- 属性名 -->
+  			<name>count</name>
+  			<!-- 属性是否必须 -->
+  			<required>false</required>
+  			<!-- runtime expresssion value当前属性是否可以接受运行时表达式的动态值 -->
+  			<rtexprvalue>false</rtexprvalue>
+  		</attribute>
+  		
+  		</tag>
+		
+		<!-- 带标签体的标签 -->
+		<tag>
+		
+			<name>body</name>
+				
+			<tag-class>com.simon.nvwo.javaweb.tag.TestJspFragment</tag-class>
+			<!--支持标签体使用EL和JSP动作元素-->
+			<body-content>scriptless</body-content>
+		</tag>
+  		
+  		<!-- 父标签 -->
+  		<tag>
+  			<name>paretnTag</name>
+  			
+  			<tag-class>com.simon.nvwo.javaweb.tag.TestparentTag</tag-class>
+  			
+  			<body-content>scriptless</body-content>
+  		</tag>
+  		
+  		<!-- 子标签 -->
+  		<tag>
+  			
+  			<name>sonTag</name>
+  			
+  			<tag-class>com.simon.nvwo.javaweb.tag.TestSonTag</tag-class>
+  			
+  			<body-content>empty</body-content>
+  			
+
+  		</tag>
+  		
+  	 <!-- 描述EL自定义函数 -->	
+  	 <function>
+  	 	<name>concat</name>
+  	 	<function-class>com.simon.nvwo.javaweb.jsp.el.ElFunction</function-class>
+  	 	<function-signature>String concat(java.lang.String,java.lang.String)</function-signature>
+  	 </function>
+  	
+  		
+</taglib>

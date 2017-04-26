@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>iRock - The  Virtual Pet Rock </title>
+
+<script type="text/javascript" src="js/cookie.js"></script>
+<script type="text/javascript">
+
+	var username; //定义公用变量
+	
+	function touchRock(){
+		
+		if(username){
+			alert("I like the attention, "+username+". Thank you.");
+		}else{
+			
+			username=prompt("What's your name?", "Enter your name here");	
+			if(username){
+				//页面使用cookie存储username
+				alert("It is happy to meet you,"+username+".");
+				
+				if(navigator.cookieEnabled){
+					writeCookie("irock_username", username, 5*365);
+				}else{
+					alert("Sorry.Cookies aren't supported in you brower.I won't remember you later.");
+				}
+				
+		}
+
+			document.getElementById("rockImg").src="images/rock_happy.png";
+			setTimeout("document.getElementById('rockImg').src='images/rock.png'", 5*1000);		
+		}
+
+	}
+	//设置rockImg的高度为浏览器窗口高度-100px的0.9
+	function resizedRock(){
+		
+		document.getElementById("rockImg").style.height=
+			(document.body.clientHeight-100)*0.9;
+		
+		 
+	}
+	//页面载入时弹出欢迎框
+	function greetUser(){
+		//判断浏览器是否允许cookie
+		if(navigator.cookieEnabled){
+	
+		//从cookie读取username	
+		username=readCookie("irock_username");	
+		}
+		if(username){
+			alert("Hello "+username+", I missed you.");
+		}
+		else{
+			alert('Hello,I am  your pet rock');	
+		}
+		
+	}
+	
+	
+</script>
+
+</head>
+
+<body onload="resizedRock();greetUser();">
+		
+		<div style="margin-top:100px; text-align: center;">		
+			<img id="rockImg" src="images/rock.png"
+			onclick="touchRock()" alt="iRock"/>
+
+		</div>
+		
+		 
+	
+</body>
+</html>
