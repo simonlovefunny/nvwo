@@ -43,4 +43,10 @@ Authorizer
 
 加密（账号，密码）
 	Shiro提供了base64和16进制字符串编码/解码的API支持
+
+登录权限实例	
 	
+	com.simon.nvwo.shiro.entity pojo类
+	com.simon.nvwo.shiro.dao dao层
+	com.simon.nvwo.shiro.service service层
+	com.simon.nvwo.shiro.project.test 测试包
