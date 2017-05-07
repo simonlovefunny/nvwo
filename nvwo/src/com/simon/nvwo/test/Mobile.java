@@ -4,43 +4,32 @@ import com.simon.nvwo.excel.ExcelCell;
 
 public class Mobile {
 	
-	/**
-	 * id
+    /**
+	 * 姓名
 	 */
-	private Integer id;
+	 @ExcelCell(index = 0)
+	private String name;
 	/**
 	 * 电话号码
 	 */	
-	 @ExcelCell(index = 0)
+	 @ExcelCell(index = 1)
 	private String phone;
 	
 	/**
 	 * 省
 	 */
-	 @ExcelCell(index = 1)
+	 @ExcelCell(index = 2)
 	private String province;
 	
 	/**
 	 * 市
 	 */
-	 @ExcelCell(index = 2)
+	 @ExcelCell(index = 3)
 	private String city;
 	
 
 
-	/**
-	 * @return the id
-	 */
-	public Integer getId() {
-		return id;
-	}
 
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(Integer id) {
-		this.id = id;
-	}
 
 	/**
 	 * @return the phone
@@ -84,13 +73,42 @@ public class Mobile {
 		this.city = city;
 	}
 
-	/* 
-	* @see java.lang.Object#toString()
-	*/ 
-	@Override
-	public String toString() {
-		return "Mobile [phone=" + phone + ", province=" + province + ", city=" + city + "]";
-	}
+	
+    /**
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
+
+    
+    /**
+     * @param name the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Mobile(String name, String phone, String province, String city) {
+        super();
+        this.name = name;
+        this.phone = phone;
+        this.province = province;
+        this.city = city;
+    }
+
+    public Mobile() {
+        super();
+    }
+
+    /* 
+     * Description:
+     * @see java.lang.Object#toString()
+     */
+    @Override
+    public String toString() {
+        return "Mobile [name=" + name + ", phone=" + phone + ", province=" + province + ", city=" + city + "]";
+    }
 
 
 

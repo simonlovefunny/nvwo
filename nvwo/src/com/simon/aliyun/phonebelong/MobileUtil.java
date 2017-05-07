@@ -15,6 +15,7 @@ import java.util.Map;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.util.EntityUtils;
+import org.apache.log4j.Logger;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
@@ -32,6 +33,7 @@ public class MobileUtil {
     //APPCODE
     private final static String APP_CODE="18e06bc4f27041d4b5d93aec6c54ba48";
     
+    private final static Logger logger=Logger.getLogger(MobileUtil .class);
     public static void main(String[] args) {
 	    String path = "/6-1";
 	    String method = "GET";
@@ -45,7 +47,7 @@ public class MobileUtil {
     	
     	InputStream file = null;
 		try {
-			file = new FileInputStream("c:\\Users\\昭毅\\Desktop\\test\\345.xls");
+			file = new FileInputStream("c:\\Users\\昭毅\\Desktop\\test\\22.xls");
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -60,7 +62,11 @@ public class MobileUtil {
 		
 		while(iterator.hasNext()){
 			
-			String phone=iterator.next().getPhone();
+		    Mobile tempmobile=iterator.next();
+		    //phone在excel中要以文本的形式存放（数据-分列修改文本）
+			String phone=tempmobile.getPhone()==null?"":tempmobile.getPhone();
+			String name=tempmobile.getName()==null?"":tempmobile.getName();
+
 			querys.put("num", phone);
 		    try {
 
@@ -71,9 +77,9 @@ public class MobileUtil {
 		    	//转化json为Mobile对象
 		    	JSONObject temp=new JSONObject();
 		    	temp=JSON.parseObject(EntityUtils.toString(response.getEntity()));
-		    	
+
 		    	//null判断和处理
-		    	if(StringUtils.notNull(temp.get("showapi_res_body").toString() ) ){
+		    	if(StringUtils.notNull(temp.get("showapi_res_body")==null?"": temp.get("showapi_res_body").toString()) ){
 		    		
 		    		//解析Json数组
 			    	JSONObject json=(JSONObject) temp.get("showapi_res_body");
@@ -100,20 +106,21 @@ public class MobileUtil {
 			    	mobile.setProvince("0");
 			    	mobile.setCity("0");
 		    	}
-		    	
-		    	
+		    	mobile.setName(name);
+		    	logger.info(mobile);
 		    	list.add(mobile);
 		    	
 		    } catch (Exception e) {
 		    	e.printStackTrace();
+		    	logger.error("phone get no location: "+phone);
 		    }
 
 			querys.remove("num");
 		}
 		
 	    try {
-			String[] excelheaders = {"手机号","省份","城市"};
-			File f=new File("c:\\Users\\昭毅\\Desktop\\test\\543.xls");
+			String[] excelheaders = {"姓名","手机号","省份","城市"};
+			File f=new File("c:\\Users\\昭毅\\Desktop\\test\\012.xls");
 		    OutputStream out =new FileOutputStream(f);
 		        
 		    ExcelUtil.exportExcel(excelheaders, list, out);
